@@ -17,11 +17,16 @@ class ProductTemplate(models.Model):
     currency_id = fields.Many2one(
             'res.currency','Currency',
             # compute='_compute_currency_id',
-            inverse='_inverse_currency_id')
+            # inverse='_inverse_currency_id',
+            )
     cost_currency_id = fields.Many2one(
             'res.currency','Currency',
             # compute='_compute_currency_id',
-            inverse='_inverse_currency_id')
+            # inverse='_inverse_currency_id'
+            )
+    currency_id_test = fields.Many2one(
+            'res.currency','Currency',
+            )
 
     def _inverse_currency_id(self):
         pass
