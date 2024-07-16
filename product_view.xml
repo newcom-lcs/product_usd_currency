@@ -23,9 +23,6 @@
             <field name="cost_currency_id" position="attributes">
                 <attribute name="invisible">False</attribute>
             </field>
-            <field name="currency_id_test" position="attributes">
-                <attribute name="invisible">False</attribute>
-            </field>
         </field>
     </record>
 
