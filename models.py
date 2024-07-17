@@ -11,15 +11,13 @@ class ProductTemplate(models.Model):
     @api.depends('company_id')
     def _compute_currency_id(self):
         for template in self:
-            template.currency_id = self.env.ref('base.USD')
-            template.cost_currency_id = self.env.ref('base.USD')
+            if template.currency_id_override:
+                template.currency_id = template.currency_id_override
+                template.cost_currency_id = template.currency_id_override
+            else:
+                super(ProductTemplate, self)._compute_currency_id()
 
-    currency_id = fields.Many2one(
-            'res.currency','Currency',
-            compute='_compute_currency_id',inverse='_inverse_currency_id')
-    cost_currency_id = fields.Many2one(
-            'res.currency','Currency',
-            compute='_compute_currency_id',inverse='_inverse_currency_id')
+    currency_id_override = fields.Many2one(
+        'res.currency','Currency'
+    )
 
-    def _inverse_currency_id(self):
-        pass
